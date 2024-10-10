@@ -1,0 +1,52 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: #00FF00;
+    font-family: 'Courier New', Courier, monospace;
+    height: 100%;
+    overflow: hidden;
+}
+
+#terminal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#output {
+    flex: 1;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: column;
+}
+
+#input-line {
+    display: flex;
+}
+
+#input {
+    background: black;
+    color: #00FF00;
+    border: none;
+    outline: none;
+    flex: 1;
+    caret-color: #00FF00;
+}
+
+#prompt {
+    margin-right: 5px;
+}
+
+.crt-effect {
+    /* CRT FILTER */
+    text-shadow: 0 0 2px #00FF00, 0 0 5px #00FF00, 0 0 10px #00FF00;
+    filter: contrast(150%) brightness(80%);
+}
