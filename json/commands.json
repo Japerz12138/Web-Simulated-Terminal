@@ -4,24 +4,58 @@
     "commands": {
         "help": {
             "description": "Display available commands",
-            "output": ""
+            "output": "",
+            "hide": false
         },
         "clear": {
             "description": "Clear the terminal screen, or use CTRL+L shortcut!",
-            "output": ""
+            "output": "",
+            "hide": false
+        },
+        "/gamemode": {
+            "description": "",
+            "output": "",
+            "subcommands": {
+                "1": {
+                    "description": "",
+                    "output": "Your game mode has been updated to Creative Mode",
+                    "hide": true
+                },
+                "0": {
+                    "description": "",
+                    "output": "Your game mode has been updated to Survival Mode",
+                    "hide": true
+                }
+            },
+            "hide": true
+        },
+        "rm": {
+            "description": "",
+            "output": "",
+            "subcommands": {
+                "-rf": {
+                    "description": "",
+                    "output": "NO! YOU CAN'T! PERMISSION DENIED!!",
+                    "hide": true
+                }
+            },
+            "hide": true
         },
         "cyberhack": {
             "description": "Cyberhack related commands",
             "subcommands": {
                 "about": {
                     "description": "Show information about Cyberhack",
-                    "output": "\n=========================================\nWelcome to Cyberhack Club - Old Westbury.\n========================================= \n\n The Cyberhack Club is a community for all NYIT students passionate about technology, cybersecurity, and coding. Our mission is to create a collaborative environment where students of all skill levels can learn, share knowledge, and develop skills that go beyond the classroom. \n\n We host a variety of exciting events throughout the semester, including hackathons, coding challenges (CodeCycles), hands-on workshops, and tech talks. Our events are designed to help students apply their knowledge in real-world scenarios, while fostering teamwork and creativity. With a focus on both technical and soft skills, we ensure that every member has an opportunity to grow. \n\n Our faculty advisor, George Salayka, brings a wealth of industry experience and offers valuable resources such as Red Hat Enterprise Linux certifications, giving members a competitive edge in the job market. We also prioritize listening to our members’ suggestions and tailoring our content to include topics that aren’t typically covered in traditional coursework—such as penetration testing, cloud security, and advanced programming techniques. \n\n Whether you’re a novice looking to get started or an experienced coder seeking to expand your horizons, the Cyberhack Club is the perfect place to connect, learn, and succeed. We welcome everyone to join us on this journey and be part of a vibrant tech community that supports growth and innovation. Let's build the future together!\n\n"
+                    "output": "\n=========================================\nWelcome to Cyberhack Club - Old Westbury.\n========================================= \n\n The Cyberhack Club is a community for all NYIT students passionate about technology, cybersecurity, and coding. Our mission is to create a collaborative environment where students of all skill levels can learn, share knowledge, and develop skills that go beyond the classroom. \n\n We host a variety of exciting events throughout the semester, including hackathons, coding challenges (CodeCycles), hands-on workshops, and tech talks. Our events are designed to help students apply their knowledge in real-world scenarios, while fostering teamwork and creativity. With a focus on both technical and soft skills, we ensure that every member has an opportunity to grow. \n\n Our faculty advisor, George Salayka, brings a wealth of industry experience and offers valuable resources such as Red Hat Enterprise Linux certifications, giving members a competitive edge in the job market. We also prioritize listening to our members’ suggestions and tailoring our content to include topics that aren’t typically covered in traditional coursework—such as penetration testing, cloud security, and advanced programming techniques. \n\n Whether you’re a novice looking to get started or an experienced coder seeking to expand your horizons, the Cyberhack Club is the perfect place to connect, learn, and succeed. We welcome everyone to join us on this journey and be part of a vibrant tech community that supports growth and innovation. Let's build the future together!\n\n",
+                    "hide": false
                 },
                 "join": {
                     "description": "How to join the Cyberhack club",
-                    "output": "To join the Cyberhack club, visit our website or attend a meeting."
+                    "output": "To join the Cyberhack club, visit our website or attend a meeting.",
+                    "hide": false
                 }
-            }
+            },
+            "hide": false
         }
     }
 }

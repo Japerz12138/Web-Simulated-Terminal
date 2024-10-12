@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (cmd === 'help') {
             displayHelp(); // auto help
         } else {
-            const outputContent = commands[cmd].output || "No output.";
+            const outputContent = commands[cmd].output || "No output. Empty. Blank. Just no stuff here.";
             printOutput(outputContent);
         }
     }
@@ -73,11 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let helpText = "\nCommands:\n\n";
         const sortedCommands = Object.keys(commands).sort();
         for (const cmd of sortedCommands) {
-            helpText += `${cmd}: ${commands[cmd].description}\n`;
-            if (commands[cmd].subcommands) {
-                const sortedSubCommands = Object.keys(commands[cmd].subcommands).sort();
-                for (const subCmd of sortedSubCommands) {
-                    helpText += ` ⇒ ${subCmd}: ${commands[cmd].subcommands[subCmd].description}\n`;
+            if (!commands[cmd].hide) {
+                helpText += `${cmd}: ${commands[cmd].description}\n`;
+                if (commands[cmd].subcommands) {
+                    const sortedSubCommands = Object.keys(commands[cmd].subcommands).sort();
+                    for (const subCmd of sortedSubCommands) {
+                        helpText += ` ⇒ ${subCmd}: ${commands[cmd].subcommands[subCmd].description}\n`;
+                    }
                 }
             }
         }
