@@ -39,7 +39,9 @@ body, html {
     outline: none;
     flex: 1;
     caret-color: #00FF00;
+    box-shadow: 0 0 10px #00FF00, 0 0 5px #00FF00, 0 0 5px #00FF00;
 }
+
 
 #prompt {
     margin-right: 5px;

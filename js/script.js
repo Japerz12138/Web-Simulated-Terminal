@@ -38,9 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handles commands
     function handleCommand(command) {
         printOutput(`> ${command}`);
-        const [cmd, ...args] = command.split(' ');
+        const [cmd, subCmd, ...args] = command.split(' ');
         if (commands[cmd]) {
-            displayCommandOutput(cmd);
+            if (commands[cmd].subcommands && subCmd) {
+                // HADOL SHUBCUMMAND
+                if (commands[cmd].subcommands[subCmd]) {
+                    const subOutput = commands[cmd].subcommands[subCmd].output || "No output.";
+                    printOutput(subOutput);
+                } else {
+                    printOutput(`Unknown subcommand: ${subCmd} for command: ${cmd}`);
+                }
+            } else {
+                displayCommandOutput(cmd);
+            }
         } else {
             printOutput(`Unknown command: ${cmd}`);
         }
@@ -58,22 +68,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Auto Gen help contents
+    // Auto Generate the help list and sort them
     function displayHelp() {
-        let helpText = "Commands:\n";
-        for (const cmd in commands) {
+        let helpText = "\nCommands:\n\n";
+        const sortedCommands = Object.keys(commands).sort();
+        for (const cmd of sortedCommands) {
             helpText += `${cmd}: ${commands[cmd].description}\n`;
+            if (commands[cmd].subcommands) {
+                const sortedSubCommands = Object.keys(commands[cmd].subcommands).sort();
+                for (const subCmd of sortedSubCommands) {
+                    helpText += ` ⇒ ${subCmd}: ${commands[cmd].subcommands[subCmd].description}\n`;
+                }
+            }
         }
         printOutput(helpText);
     }
 
-    // Handles Tab Complete
+    // Handles Tab Auto Complete
     function handleTabComplete(input) {
-        const possibleCommands = Object.keys(commands).filter(cmd => cmd.startsWith(input));
-        if (possibleCommands.length === 1) {
-            inputField.value = possibleCommands[0];
-        } else if (possibleCommands.length > 1) {
-            printOutput(`You mean: ${possibleCommands.join(', ')} ?`);
+        const parts = input.split(' ');
+        if (parts.length === 1) {
+            // Main Command AC
+            const possibleCommands = Object.keys(commands).filter(cmd => cmd.startsWith(input));
+            if (possibleCommands.length === 1) {
+                inputField.value = possibleCommands[0];
+            } else if (possibleCommands.length > 1) {
+                printOutput(`You mean: ${possibleCommands.join(', ')} ?`);
+            }
+        } else if (parts.length === 2) {
+            // Attribute AC
+            const mainCmd = parts[0];
+            if (commands[mainCmd] && commands[mainCmd].subcommands) {
+                const subInput = parts[1];
+                const possibleSubCommands = Object.keys(commands[mainCmd].subcommands).filter(subCmd => subCmd.startsWith(subInput));
+                if (possibleSubCommands.length === 1) {
+                    inputField.value = `${mainCmd} ${possibleSubCommands[0]}`;
+                } else if (possibleSubCommands.length > 1) {
+                    printOutput(`You mean: ${possibleSubCommands.join(', ')} ?`);
+                }
+            }
         }
     }
 

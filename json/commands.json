@@ -1,18 +1,27 @@
 {
-    "asciiArt": " ________      ___    ___ ________  _______   ________  ___  ___  ________  ________  ___  ___       \n|\\   ____\\    |\\  \\  /  /|\\   __  \\|\\  ____\\ |\\   __  \\|\\  \\|\\  \\|\\   __  \\|\\   ____\\|\\  \\|\\  \\     \n\\ \\  \\___|    \\ \\  \\/  / | \\  \\|\\ /\\ \\  \\_|_ \\ \\  \\|\\  \\ \\  \\\\\\  \\ \\  \\|\\  \\ \\  \\___|\\ \\  \\/  /|_   \n \\ \\  \\        \\ \\    / / \\ \\   __  \\ \\   ___\\\\ \\   _  _\\ \\   __  \\ \\   __  \\ \\  \\    \\ \\   ___  \\  \n  \\ \\  \\____    \\/  /  /   \\ \\  \\|\\  \\ \\  \\__|_\\ \\  \\\\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\ \\  \\____\\ \\  \\\\ \\  \\ \n   \\ \\_______\\__/  / /      \\ \\_______\\ \\_______\\ \\__\\\\ _\\\\ \\__\\ \\__\\ \\__\\ \\__\\ \\_______\\ \\__\\\\ \\__\\\n    \\|_______|\\___/ /        \\|_______|\\|_______|\\|__|\\|__|\\|__|\\|__|\\|__|\\|__|\\|_______|\\|__| \\|__|\n             \\|___|/                                                                                 ",
-    "welcomeMessage": "Welcome to Cyberhack Terminal v1.0! Execute 'help' to show available commands.\n",
+    "asciiArt": " ________      ___    ___ ________  _______   ________  ___  ___  ________  ________  ___  ___       \n|\\   ____\\    |\\  \\  /  /|\\   __  \\|\\  ____\\ |\\   __  \\|\\  \\|\\  \\|\\   __  \\|\\   ____\\|\\  \\|\\  \\     \n\\ \\  \\___|    \\ \\  \\/  / | \\  \\|\\ /\\ \\  \\__|_\\ \\  \\|\\  \\ \\  \\\\\\  \\ \\  \\|\\  \\ \\  \\___|\\ \\  \\/  /|_   \n \\ \\  \\        \\ \\    / / \\ \\   __  \\ \\   ___\\\\ \\   _  _\\ \\   __  \\ \\   __  \\ \\  \\    \\ \\   ___  \\  \n  \\ \\  \\____    \\/  /  /   \\ \\  \\|\\  \\ \\  \\__|_\\ \\  \\\\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\ \\  \\____\\ \\  \\\\ \\  \\ \n   \\ \\_______\\__/  / /      \\ \\_______\\ \\_______\\ \\__\\\\ _\\\\ \\__\\ \\__\\ \\__\\ \\__\\ \\_______\\ \\__\\\\ \\__\\\n    \\|_______|\\___/ /        \\|_______|\\|_______|\\|__|\\|__|\\|__|\\|__|\\|__|\\|__|\\|_______|\\|__| \\|__|\n             \\|___|/                                                                                 ",
+    "welcomeMessage": "\nWelcome to Cyberhack Terminal v1.0! Execute 'help' to show available commands.\n\n[Disclaimer] This is a simulated terminal. Commands executed here will not affect your computer. Have Fun! ",
     "commands": {
         "help": {
             "description": "Display available commands",
             "output": ""
         },
-        "about": {
-            "description": "Show about Cyberhack Club information",
-            "output": "Welcome to Cyberhack Club - Old Westbury. \n\n The Cyberhack Club is a community for all NYIT students passionate about technology, cybersecurity, and coding. Our mission is to create a collaborative environment where students of all skill levels can learn, share knowledge, and develop skills that go beyond the classroom. \n\n We host a variety of exciting events throughout the semester, including hackathons, coding challenges (CodeCycles), hands-on workshops, and tech talks. Our events are designed to help students apply their knowledge in real-world scenarios, while fostering teamwork and creativity. With a focus on both technical and soft skills, we ensure that every member has an opportunity to grow. \n\n Our faculty advisor, George Salayka, brings a wealth of industry experience and offers valuable resources such as Red Hat Enterprise Linux certifications, giving members a competitive edge in the job market. We also prioritize listening to our members’ suggestions and tailoring our content to include topics that aren’t typically covered in traditional coursework—such as penetration testing, cloud security, and advanced programming techniques. \n\n Whether you’re a novice looking to get started or an experienced coder seeking to expand your horizons, the Cyberhack Club is the perfect place to connect, learn, and succeed. We welcome everyone to join us on this journey and be part of a vibrant tech community that supports growth and innovation. Let's build the future together!"
-        },
         "clear": {
-            "description": "Clear the terminal screen, or use CTRL + L",
+            "description": "Clear the terminal screen, or use CTRL+L shortcut!",
             "output": ""
+        },
+        "cyberhack": {
+            "description": "Cyberhack related commands",
+            "subcommands": {
+                "about": {
+                    "description": "Show information about Cyberhack",
+                    "output": "\n=========================================\nWelcome to Cyberhack Club - Old Westbury.\n========================================= \n\n The Cyberhack Club is a community for all NYIT students passionate about technology, cybersecurity, and coding. Our mission is to create a collaborative environment where students of all skill levels can learn, share knowledge, and develop skills that go beyond the classroom. \n\n We host a variety of exciting events throughout the semester, including hackathons, coding challenges (CodeCycles), hands-on workshops, and tech talks. Our events are designed to help students apply their knowledge in real-world scenarios, while fostering teamwork and creativity. With a focus on both technical and soft skills, we ensure that every member has an opportunity to grow. \n\n Our faculty advisor, George Salayka, brings a wealth of industry experience and offers valuable resources such as Red Hat Enterprise Linux certifications, giving members a competitive edge in the job market. We also prioritize listening to our members’ suggestions and tailoring our content to include topics that aren’t typically covered in traditional coursework—such as penetration testing, cloud security, and advanced programming techniques. \n\n Whether you’re a novice looking to get started or an experienced coder seeking to expand your horizons, the Cyberhack Club is the perfect place to connect, learn, and succeed. We welcome everyone to join us on this journey and be part of a vibrant tech community that supports growth and innovation. Let's build the future together!\n\n"
+                },
+                "join": {
+                    "description": "How to join the Cyberhack club",
+                    "output": "To join the Cyberhack club, visit our website or attend a meeting."
+                }
+            }
         }
     }
 }
