@@ -26,10 +26,12 @@ body, html {
     white-space: pre-wrap;
     display: flex;
     flex-direction: column;
+    gap: 10px; /* Add spacing between divs */
 }
 
 #input-line {
     display: flex;
+    margin-top: 20px; /* Add padding between output and input text box */
 }
 
 #input {
@@ -41,7 +43,6 @@ body, html {
     caret-color: #00FF00;
     box-shadow: 0 0 10px #00FF00, 0 0 5px #00FF00, 0 0 5px #00FF00;
 }
-
 
 #prompt {
     margin-right: 5px;

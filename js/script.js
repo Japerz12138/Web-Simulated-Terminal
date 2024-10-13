@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let commandHistory = [];
     let historyIndex = -1;
+    let promptMode = false;
+    let currentURL = '';
 
     // Load the command json
     fetch('../json/commands.json')
@@ -34,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Enter') {
             const command = inputField.value.trim();
             if (command) {
+                if (promptMode) {
+                    handlePromptResponse(command);
+                    return;
+                }
                 handleCommand(command);
                 commandHistory.push(command);
                 historyIndex = commandHistory.length;
@@ -51,6 +57,23 @@ document.addEventListener('DOMContentLoaded', () => {
             showNextCommand();
         }
     });
+
+    function handlePromptResponse(response) {
+        response = response.toLowerCase();
+        if (response === 'y') {
+            window.open(currentURL, '_blank'); // Open the URL in a new tab
+            printOutput(`Opening ${currentUrl}...`);
+        } else if (response === 'n') {
+            printOutput("Operation canceled.");
+        } else {
+            printOutput("Invalid input. Operation canceled.");
+        }
+
+        // Reset prompt mode and clear URL
+        promptMode = false;
+        currentURL = '';
+        inputField.value = ''; // Clear input
+    }
 
     function showPreviousCommand() {
         if (historyIndex > 0) {
@@ -75,10 +98,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Handles commands
+    // Handles commands (The commands that needs JS goes HERE!)
     function handleCommand(command) {
-        printOutput(`> ${command}`);
+        printOutput(`guest@cyberhack:~$ ${command}`);
         const [cmd, subCmd, ...args] = command.split(' ');
+
+        if (cmd === "cyberhack" && subCmd === "join") {
+            const url = "https://campusgroups.nyit.edu/CHC/club_signup";
+            promptForUrlExecution(url);
+            return;
+        } else if (cmd === "cyberhack" && subCmd === "discord") {
+            const url = "";
+            promptForUrlExecution(url);
+            return;
+        }
+
+        if (cmd === "history" && subCmd === "clear") {
+            commandHistory = [];
+            printOutput(`Command history cleared.`);
+            return;
+        }
+
+        if (cmd === 'help' || cmd === '?') { 
+            displayHelp();
+            return;
+        }
+
         if (commands[cmd]) {
             if (commands[cmd].subcommands && subCmd) {
                 // HADOL SHUBCUMMAND
@@ -92,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayCommandOutput(cmd, args);
             }
         } else {
-            printOutput(`Unknown command: ${cmd}`);
+            printOutput(`Unknown command: ${cmd}, Execute 'help' to show available commands.`);
         }
     }
 
@@ -123,7 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return currentDir;
     }
 
-    // Handels special commands (The commands that needs JS goes HERE!)
+    function promptForUrlExecution(url) {
+        printOutput(`The following URL will open in your new tab: ${url}\nExecute? [Y/y] Yes or [N/n] No`);
+        promptMode = true; // Enter prompt mode
+        currentURL = url;  // Store the URL for redirection
+    }
+
+    // Handels special commands (Planning to get rid off in future commit.)
     function displayCommandOutput(cmd, args) {
         if (cmd === 'clear') {
             clearScreen(); // Clean screen
@@ -134,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (cmd === "history") {
             printOutput(`Command History: ${commandHistory}`);
         } else {
-            const outputContent = commands[cmd].output || "No output. Empty. Blank. Just no stuff here.";
+            const outputContent = commands[cmd]?.output || "No output. Empty. Blank. Just no stuff here.";
             printOutput(outputContent);
         }
     }
@@ -194,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const newLine = document.createElement('div');
         newLine.textContent = text;
         output.appendChild(newLine);
-        output.appendChild(document.createElement('br')); // Add a br to reduce use of \n in Json. Still a stupid idea tho.
         output.scrollTop = output.scrollHeight;
     }
 

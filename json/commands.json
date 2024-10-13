@@ -1,6 +1,6 @@
 {
     "asciiArt": " ________      ___    ___ ________  _______   ________  ___  ___  ________  ________  ___  ___       \n|\\   ____\\    |\\  \\  /  /|\\   __  \\|\\  ____\\ |\\   __  \\|\\  \\|\\  \\|\\   __  \\|\\   ____\\|\\  \\|\\  \\     \n\\ \\  \\___|    \\ \\  \\/  / | \\  \\|\\ /\\ \\  \\__|_\\ \\  \\|\\  \\ \\  \\\\\\  \\ \\  \\|\\  \\ \\  \\___|\\ \\  \\/  /|_   \n \\ \\  \\        \\ \\    / / \\ \\   __  \\ \\   ___\\\\ \\   _  _\\ \\   __  \\ \\   __  \\ \\  \\    \\ \\   ___  \\  \n  \\ \\  \\____    \\/  /  /   \\ \\  \\|\\  \\ \\  \\__|_\\ \\  \\\\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\ \\  \\____\\ \\  \\\\ \\  \\ \n   \\ \\_______\\__/  / /      \\ \\_______\\ \\_______\\ \\__\\\\ _\\\\ \\__\\ \\__\\ \\__\\ \\__\\ \\_______\\ \\__\\\\ \\__\\\n    \\|_______|\\___/ /        \\|_______|\\|_______|\\|__|\\|__|\\|__|\\|__|\\|__|\\|__|\\|_______|\\|__| \\|__|\n             \\|___|/                                                                                 ",
-    "welcomeMessage": "\nWelcome to Cyberhack Terminal v1.0! Execute 'help' to show available commands.\n\n[Disclaimer] This is a simulated terminal. Commands executed here will not affect your computer. Have Fun! ",
+    "welcomeMessage": "\nWelcome to Cyberhack Terminal v1.1! Execute 'help' to show available commands.\n\n[Disclaimer] This is a simulated terminal. Commands executed here will not affect your computer. Have Fun! ",
     "commands": {
         "help": {
             "description": "Display available commands",
@@ -15,12 +15,28 @@
         "history": {
             "description": "Show command history",
             "output": "",
+            "subcommands": {
+                "clear": {
+                    "description": "Clear command history",
+                    "output": "",
+                    "hide": false
+                }
+            },
             "hide": false
         },
         "ls": {
             "description": "List directory contents",
             "output": "",
             "hide": false
+        },
+        "cd": {
+            "description": "Change directory",
+            "output": "",
+            "hide": false
+        },
+        "neofetch": {
+            "description": "Display Cyberhack Terminal Logo and information (NOT REAL NEOFETCH)",
+            "output": "                                                                               \n                                                                               \n                                                                               \n                                   .........                                   \n                                 ..---------..                                 \n                               ..:-----------:.                                \n                               ..-----...-----..                               \n                               .-----.@@#.-----.                               \n                 ......        .:====:...-====..        ......                 \n              ..-======:..     -.-===========:.+     ..--====-:..              \n            ..-==========-.     @..========-..      .-==========-..            \n            .-====-..=====:.   ...@..--=--..@-.. ...:-----..=====-.            \n           ..====..@@.-====....---...-:.:-...:-..:-.:-------.:====.-           \n           ..====-....=====..=.-::-..-:..:-.:-...:-....:-....-====.%           \n            .-++++++++++++++=..-:.:---:.+.:--.=..--.=+.:-.=+++===:.            \n            #..+++++++++++++++.-:...--:.+=.--..=.:-.=+.:-.=+++++..@            \n              =..-:.........=+............................:==:..+              \n                ..%%%%#%*.#%.-.%#.-%%%#%%%.-%%%#%%.-%%%#%%%.@@                 \n                .:%+.@@@@@.#%.%*.--%=...*#.-%*----.-%+...##.                   \n                .:%+.....  .=%=.+:-%-...+%.-%=.....-%+...#%.                   \n                ..%%%%%%*. .=%=.+:-%%%%%%#.-%%%%%%.-%=.@.#%.                   \n                 @-::---.+...=+***++++++++*+++++++...:* -...+                  \n              ...=++++-....*-...-.......--................+++-...              \n             ..*#*#*##+-%=.#.+%-.%%***#%:=%#****-=%-..#%.-#*****..             \n            .=#####**#+-%#####%-.%%===*%:*%:#@@=.=%#*%*.##***#*#*=.            \n           ..####+....+-%=...+%-.%#...-%:+%:.....=%-.*%=.....=###*.*           \n           ..####-.@@.--#-:..+#-.##...-#:.######==#-=--##.-@.=####.=           \n            .+#####--###%%+.@@@@@@%..*%%%#.:@@@@@@@.+#%%##--#####+.            \n            :.+##########+.@     ..#########..     @.+##########+.-            \n              ..+######=..     ..+###########+..     ..=######=..              \n                @-....=@       .=####+...+####-.       @-....-@                \n                               .##%##.@ +.##%##.                               \n                               .-%#%#*...*%#%#-.                               \n                               +.+%%%%%%%%%%%=.#                               \n                                 ..#%%%%%%%#..                                 \n                                  @.........@                                  \n                                                                               \n                                                                               \n                                                                               \n                                                                               \n                                                                               \n\n https://www.cyberhack-li.org/ \n\n Github Repo: https://github.com/Japerz12138/Web-Simulated-Terminal \n"
         },
         "/gamemode": {
             "description": "",
@@ -53,6 +69,7 @@
         },
         "cyberhack": {
             "description": "Cyberhack related commands",
+            "output": "Thank you for your intrest on Cyberhack Club! Please add an arrgument (or sub-command) to navigate!",
             "subcommands": {
                 "about": {
                     "description": "Show information about Cyberhack",
@@ -60,8 +77,13 @@
                     "hide": false
                 },
                 "join": {
-                    "description": "How to join the Cyberhack club",
-                    "output": "To join the Cyberhack club, visit our website or attend a meeting.",
+                    "description": "Join Cyberhack Club via Campus Groups",
+                    "output": "",
+                    "hide": false
+                },
+                "discord": {
+                    "description": "Join Cyberhack Club Discord",
+                    "output": "",
                     "hide": false
                 }
             },
