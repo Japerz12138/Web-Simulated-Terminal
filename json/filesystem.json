@@ -1,0 +1,36 @@
+{
+    "root": {
+        "type": "directory",
+        "contents": {
+            "bin": {
+                "type": "directory",
+                "contents": {
+                    "bash": { "type": "file", "permissions": "rwxr-xr-x", "size": "1.5M" },
+                    "ls": { "type": "file", "permissions": "rwxr-xr-x", "size": "25K" }
+                }
+            },
+            "home": {
+                "type": "directory",
+                "contents": {
+                    "user": {
+                        "type": "directory",
+                        "contents": {
+                            "documents": { "type": "directory", "contents": {} },
+                            "notes.txt": { "type": "file", "permissions": "rw-r--r--", "size": "5K" }
+                        }
+                    }
+                }
+            },
+            "etc": {
+                "type": "directory",
+                "contents": {
+                    "passwd": { "type": "file", "permissions": "rw-r--r--", "size": "2K" }
+                }
+            },
+            "var": {
+                "type": "directory",
+                "contents": {}
+            }
+        }
+    }
+}

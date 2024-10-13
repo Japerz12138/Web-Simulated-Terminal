@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let commands = {};
     let asciiArt = '';
     let welcomeMessage = '';
+    let fileSystem = {};
+    let currentPath = ['root'];
 
     // Load the command json
     fetch('../json/commands.json')
@@ -16,6 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show welcome message
             printOutput(asciiArt);
             printOutput(welcomeMessage);
+        });
+
+    fetch('../json/filesystem.json')
+        .then(response => response.json())
+        .then(data => {
+            fileSystem = data;
         });
 
     // Handles user inputs
@@ -43,17 +51,48 @@ document.addEventListener('DOMContentLoaded', () => {
             if (commands[cmd].subcommands && subCmd) {
                 // HADOL SHUBCUMMAND
                 if (commands[cmd].subcommands[subCmd]) {
-                    const subOutput = commands[cmd].subcommands[subCmd].output || "No output.";
+                    const subOutput = commands[cmd].subcommands[subCmd].output || "No output. Empty. Blank. Just no stuff here.";
                     printOutput(subOutput);
                 } else {
                     printOutput(`Unknown subcommand: ${subCmd} for command: ${cmd}`);
                 }
             } else {
-                displayCommandOutput(cmd);
+                displayCommandOutput(cmd, args);
             }
+        } else if (cmd === "ls") {
+            handleLs(args);
         } else {
             printOutput(`Unknown command: ${cmd}`);
         }
+    }
+
+    // Handles ls commands
+    function handleLs(args) {
+        const currentDir = getCurrentDir();
+        if (args.includes("-l")) {
+            // For `ls -l`, each item should be printed on a new line
+            for (const item in currentDir.contents) {
+                const entry = currentDir.contents[item];
+                if (entry.type === "file") {
+                    printOutput(`${entry.permissions} ${entry.size} ${item}`);
+                } else {
+                    printOutput(`drwxr-xr-x ${item}`);
+                }
+            }
+        } else {
+            // `ls` will print the names horizontally
+            const items = Object.keys(currentDir.contents);
+            printOutput(items.join(' ')); // Prints all in one line
+        }
+    }
+
+
+    function getCurrentDir() {
+        let currentDir = fileSystem;
+        for (const dir of currentPath) {
+            currentDir = currentDir[dir];
+        }
+        return currentDir;
     }
 
     // Handels special commands
@@ -123,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const newLine = document.createElement('div');
         newLine.textContent = text;
         output.appendChild(newLine);
+        output.appendChild(document.createElement('br')); // Add a br to reduce use of \n in Json. Still a stupid idea tho.
         output.scrollTop = output.scrollHeight;
     }
 
