@@ -12,6 +12,16 @@
             "output": "",
             "hide": false
         },
+        "history": {
+            "description": "Show command history",
+            "output": "",
+            "hide": false
+        },
+        "ls": {
+            "description": "List directory contents",
+            "output": "",
+            "hide": false
+        },
         "/gamemode": {
             "description": "",
             "output": "",

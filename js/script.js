@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let fileSystem = {};
     let currentPath = ['root'];
 
+    let commandHistory = [];
+    let historyIndex = -1;
+
     // Load the command json
     fetch('../json/commands.json')
         .then(response => response.json())
@@ -32,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const command = inputField.value.trim();
             if (command) {
                 handleCommand(command);
+                commandHistory.push(command);
+                historyIndex = commandHistory.length;
                 inputField.value = ''; //Clear the input
             }
         } else if (e.key === 'Tab') {
@@ -40,8 +45,35 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (e.ctrlKey && e.key === 'l') {
             e.preventDefault(); // STOP the ctrl L
             handleCtrlL();
+        } else if (e.key === 'ArrowUp') {
+            showPreviousCommand();
+        } else if (e.key === 'ArrowDown') {
+            showNextCommand();
         }
     });
+
+    function showPreviousCommand() {
+        if (historyIndex > 0) {
+            historyIndex--;
+            inputField.value = commandHistory[historyIndex];
+        } else if (historyIndex === 0) {
+            inputField.value = commandHistory[historyIndex];
+        } else {
+            inputField.value = ''; //empty out the input
+        }
+    }
+
+    function showNextCommand() {
+        if (historyIndex < commandHistory.length - 1) {
+            historyIndex++;
+            inputField.value = commandHistory[historyIndex];
+        } else if (historyIndex === commandHistory.length - 1) {
+            historyIndex++;
+            inputField.value = '';
+        } else {
+            inputField.value = '';
+        }
+    }
 
     // Handles commands
     function handleCommand(command) {
@@ -59,8 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 displayCommandOutput(cmd, args);
             }
-        } else if (cmd === "ls") {
-            handleLs(args);
         } else {
             printOutput(`Unknown command: ${cmd}`);
         }
@@ -70,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleLs(args) {
         const currentDir = getCurrentDir();
         if (args.includes("-l")) {
-            // For `ls -l`, each item should be printed on a new line
             for (const item in currentDir.contents) {
                 const entry = currentDir.contents[item];
                 if (entry.type === "file") {
@@ -80,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } else {
-            // `ls` will print the names horizontally
             const items = Object.keys(currentDir.contents);
             printOutput(items.join(' ')); // Prints all in one line
         }
@@ -95,12 +123,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return currentDir;
     }
 
-    // Handels special commands
-    function displayCommandOutput(cmd) {
+    // Handels special commands (The commands that needs JS goes HERE!)
+    function displayCommandOutput(cmd, args) {
         if (cmd === 'clear') {
             clearScreen(); // Clean screen
         } else if (cmd === 'help') {
             displayHelp(); // auto help
+        } else if (cmd === "ls") {
+            handleLs(args);
+        } else if (cmd === "history") {
+            printOutput(`Command History: ${commandHistory}`);
         } else {
             const outputContent = commands[cmd].output || "No output. Empty. Blank. Just no stuff here.";
             printOutput(outputContent);
